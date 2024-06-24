@@ -13,7 +13,7 @@ const MapComponent: React.FC = () => {
     <MapContainer
       center={singaporePosition}
       zoom={13}
-      style={{ height: "92%", width: "100%" }}
+      style={{ height: "91.5%", width: "100%" }}
     >
       <TileLayer url={baseMapUrl(mode === "dark" ? "Night" : "Default")} />
       <Marker position={[51.505, -0.09]}>

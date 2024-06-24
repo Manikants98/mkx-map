@@ -1,17 +1,26 @@
-import { Close, Menu } from "@mui/icons-material";
 import {
+  Close,
+  DarkMode,
+  KeyboardArrowRight,
+  LightMode,
+  Menu,
+} from "@mui/icons-material";
+import {
+  Chip,
+  Divider,
   Drawer,
   IconButton,
   List,
   ListItem,
   ListItemButton,
 } from "@mui/material";
+import classNames from "classnames";
 import { useState } from "react";
 import { useTheme } from "../../Context/ThemeContext";
-import classNames from "classnames";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
+  const [language, setLanguage] = useState("English");
   const { mode, setMode } = useTheme();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -36,24 +45,63 @@ const Sidebar = () => {
               <Close />
             </IconButton>
           </ListItem>
-          <ListItemButton>Home</ListItemButton>
-          <ListItemButton>Guide</ListItemButton>
-          <ListItemButton>About</ListItemButton>
-          <ListItemButton>FAQs</ListItemButton>
-          <ListItemButton>Privacy Policy</ListItemButton>
-          <ListItemButton>Terms and Conditions</ListItemButton>
+          <ListItemButton className="!justify-between">
+            <p>Home</p> <KeyboardArrowRight />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton className="!justify-between">
+            <p>Guides</p> <KeyboardArrowRight />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton className="!justify-between">
+            <p>About</p> <KeyboardArrowRight />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton className="!justify-between">
+            <p>Contact Us</p> <KeyboardArrowRight />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton className="!justify-between">
+            <p>FAQs</p> <KeyboardArrowRight />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton className="!justify-between">
+            <p>Privacy Policy</p> <KeyboardArrowRight />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton className="!justify-between">
+            <p>Terms and Conditions</p> <KeyboardArrowRight />
+          </ListItemButton>
+          <Divider />
         </List>
         <List>
-          <ListItemButton
-            onClick={() => {
-              mode === "dark" ? setMode("light") : setMode("dark");
-              handleClose();
-            }}
-            className="!capitalize"
+          <ListItem
+            onClick={() =>
+              mode === "dark" ? setMode("light") : setMode("dark")
+            }
+            className="!capitalize !gap-2"
           >
+            <IconButton size="small">
+              {mode === "dark" ? <LightMode /> : <DarkMode />}
+            </IconButton>
             {mode} Mode
-          </ListItemButton>
+          </ListItem>
+          <Divider />
           <ListItem>Language Conversion</ListItem>
+          <ListItem disablePadding className="!flex !pb-2 !px-2 !gap-2">
+            <Chip
+              label="English"
+              variant={language === "English" ? "filled" : "outlined"}
+              color="secondary"
+              onClick={() => setLanguage("English")}
+            />
+            <Chip
+              label="中国人"
+              variant={language === "中国人" ? "filled" : "outlined"}
+              color="secondary"
+              onClick={() => setLanguage("中国人")}
+            />
+          </ListItem>
         </List>
       </Drawer>
     </>

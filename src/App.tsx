@@ -8,7 +8,13 @@ const App = () => {
   const { mode } = useTheme();
 
   const theme = createTheme({
-    palette: { primary: { main: "#034885" }, mode: mode as PaletteMode },
+    palette: {
+      primary: { main: "#034885" },
+      secondary: {
+        main: mode === "dark" ? "rgba(255, 255, 255, 1)" : "rgba(0, 0, 0, 1)",
+      },
+      mode: mode as PaletteMode,
+    },
   });
   return (
     <ThemeProvider theme={theme}>

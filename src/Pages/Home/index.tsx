@@ -11,6 +11,7 @@ const Home = () => {
         <Chip
           clickable
           color="error"
+          className="!h-9 !rounded-full"
           variant={category === "Education" ? "filled" : "outlined"}
           label="Education"
           onClick={() => setCategory("Education")}
@@ -18,6 +19,7 @@ const Home = () => {
         <Chip
           clickable
           color="error"
+          className="!h-9 !rounded-full"
           variant={category === "Sports" ? "filled" : "outlined"}
           label="Sports"
           onClick={() => setCategory("Sports")}
@@ -25,6 +27,7 @@ const Home = () => {
         <Chip
           clickable
           color="error"
+          className="!h-9 !rounded-full"
           variant={category === "School" ? "filled" : "outlined"}
           label="School"
           onClick={() => setCategory("School")}
@@ -32,6 +35,7 @@ const Home = () => {
         <Chip
           clickable
           color="error"
+          className="!h-9 !rounded-full"
           variant={category === "College" ? "filled" : "outlined"}
           label="College"
           onClick={() => setCategory("College")}
@@ -39,6 +43,7 @@ const Home = () => {
         <Chip
           clickable
           color="error"
+          className="!h-9 !rounded-full"
           variant={category === "Government Offices" ? "filled" : "outlined"}
           label="Government Offices"
           onClick={() => setCategory("Government Offices")}
@@ -46,6 +51,7 @@ const Home = () => {
         <Chip
           clickable
           color="error"
+          className="!h-9 !rounded-full"
           variant={category === "Home" ? "filled" : "outlined"}
           label="Home"
           onClick={() => setCategory("Home")}
