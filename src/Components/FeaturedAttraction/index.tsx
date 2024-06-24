@@ -7,7 +7,7 @@ const FeaturedAttraction = () => {
       <Button variant="outlined" className="w-12 !min-w-12 !bg-white h-12">
         <GridView sx={{ strokeWidth: "1px" }} />
       </Button>
-      <Button variant="contained" className="h-12">
+      <Button variant="contained" className="h-12 !capitalize w-80">
         View Featured Attraction
       </Button>
     </div>
