@@ -1,14 +1,11 @@
-import React from "react";
+import "leaflet/dist/leaflet.css";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import "./index.css";
-import "leaflet/dist/leaflet.css";
 import { ThemeProvider } from "./Context/ThemeContext/index.tsx";
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>
 );

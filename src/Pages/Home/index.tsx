@@ -1,61 +1,67 @@
-import { Chip, Paper } from "@mui/material";
+import { Chip, Paper, Skeleton } from "@mui/material";
 import React from "react";
 import FeaturedAttraction from "../../Components/FeaturedAttraction";
 import MapComponent from "../../Components/Map";
-
+import { useQuery } from "@tanstack/react-query";
+import { categoriesFn } from "../../Services/Category";
+import classNames from "classnames";
+interface categoryProps {
+  THEMENAME: string;
+  QUERYNAME: string;
+  ICON: string;
+  EXPIRY_DATE: string;
+  PUBLISHED_DATE: string;
+  CATEGORY: string;
+  THEME_OWNER: string;
+}
 const Home = () => {
-  const [category, setCategory] = React.useState("Education");
+  const [selectedCategory, setSelectedCategory] =
+    React.useState<categoryProps>();
+  const { data, isLoading } = useQuery({
+    queryKey: ["Categories"],
+    queryFn: categoriesFn,
+  });
+
   return (
     <Paper className="!rounded-none h-full">
-      <div className="flex items-center hide-scroll overflow-x-auto p-2 gap-2">
-        <Chip
-          clickable
-          color="error"
-          className="!h-9 !rounded-full"
-          variant={category === "Education" ? "filled" : "outlined"}
-          label="Education"
-          onClick={() => setCategory("Education")}
-        />
-        <Chip
-          clickable
-          color="error"
-          className="!h-9 !rounded-full"
-          variant={category === "Sports" ? "filled" : "outlined"}
-          label="Sports"
-          onClick={() => setCategory("Sports")}
-        />
-        <Chip
-          clickable
-          color="error"
-          className="!h-9 !rounded-full"
-          variant={category === "School" ? "filled" : "outlined"}
-          label="School"
-          onClick={() => setCategory("School")}
-        />
-        <Chip
-          clickable
-          color="error"
-          className="!h-9 !rounded-full"
-          variant={category === "College" ? "filled" : "outlined"}
-          label="College"
-          onClick={() => setCategory("College")}
-        />
-        <Chip
-          clickable
-          color="error"
-          className="!h-9 !rounded-full"
-          variant={category === "Government Offices" ? "filled" : "outlined"}
-          label="Government Offices"
-          onClick={() => setCategory("Government Offices")}
-        />
-        <Chip
-          clickable
-          color="error"
-          className="!h-9 !rounded-full"
-          variant={category === "Home" ? "filled" : "outlined"}
-          label="Home"
-          onClick={() => setCategory("Home")}
-        />
+      <div className="flex items-center lg:justify-center hide-scroll overflow-x-auto p-1 gap-2">
+        {isLoading
+          ? [1, 2, 3, 4, 5, 6, 7, 8, 9].map(() => (
+              <Chip
+                color="error"
+                icon={
+                  <Skeleton className="!w-5 !h-5 !ml-3 !scale-100 !rounded" />
+                }
+                className="!rounded-full !h-9"
+                variant={"outlined"}
+                label={<Skeleton className="w-32 !scale-100" />}
+              />
+            ))
+          : data?.data?.map((category: categoryProps) => (
+              <Chip
+                color="error"
+                icon={
+                  <img
+                    src={category.ICON}
+                    alt=""
+                    className={classNames(
+                      "h-9",
+                      category.CATEGORY === selectedCategory?.CATEGORY
+                        ? "brightness-200"
+                        : "brightness-50"
+                    )}
+                  />
+                }
+                className="!h-9 !min-w-fit !rounded-full"
+                variant={
+                  category.CATEGORY === selectedCategory?.CATEGORY
+                    ? "filled"
+                    : "outlined"
+                }
+                label={category.CATEGORY}
+                onClick={() => setSelectedCategory(category)}
+              />
+            ))}
       </div>
       <MapComponent />
       <FeaturedAttraction />

@@ -3,10 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./Pages/Home";
 import { useTheme } from "./Context/ThemeContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const App = () => {
   const { mode } = useTheme();
-
+  const client = new QueryClient({
+    defaultOptions: { queries: { refetchOnWindowFocus: false } },
+  });
   const theme = createTheme({
     palette: {
       primary: { main: "#034885" },
@@ -18,13 +21,15 @@ const App = () => {
   });
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={client}>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 };
