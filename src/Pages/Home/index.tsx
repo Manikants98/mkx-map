@@ -7,7 +7,7 @@ const Home = () => {
   const [category, setCategory] = React.useState("Education");
   return (
     <Paper className="!rounded-none h-full">
-      <div className="flex items-center overflow-x-auto p-2 gap-2">
+      <div className="flex items-center hide-scroll overflow-x-auto p-2 gap-2">
         <Chip
           clickable
           color="error"

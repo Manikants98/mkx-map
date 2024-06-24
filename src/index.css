@@ -37,3 +37,7 @@
 ::-webkit-scrollbar-button {
   display: none;
 }
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
